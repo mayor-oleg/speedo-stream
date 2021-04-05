@@ -6,7 +6,6 @@
 #"""
 
 from flask import Flask, Response,render_template
-import pyaudio
 
 app = Flask(__stream__)
 #server = app.server
