@@ -8,8 +8,8 @@
 from flask import Flask, Response,render_template
 import pyaudio
 
-app = Flask(__name__)
-
+app = Flask(__stream__)
+server = app.server
 
 @app.route('/')
 def index():
@@ -18,5 +18,5 @@ def index():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run_server()
 
