@@ -7,7 +7,7 @@
 
 from flask import Flask, Response,render_template
 
-app = Flask(__stream__)
+app = Flask(__name__)
 server = app.server
 
 @app.route('/')
