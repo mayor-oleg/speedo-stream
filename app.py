@@ -8,7 +8,7 @@
 from flask import Flask, Response,render_template
 
 app = Flask(__name__)
-server = app.server
+#server = app.server
 
 @app.route('/')
 def index():
@@ -17,5 +17,5 @@ def index():
 
 
 if __name__ == "__main__":
-    app.run_server()
+    app.run()
 
