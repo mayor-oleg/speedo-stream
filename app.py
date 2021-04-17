@@ -6,10 +6,21 @@
 #"""
 
 from flask import Flask, Response,render_template
+import boto
 
 app = Flask(__name__)
 #server = app.server
 
+# Let's use Amazon S3
+s3 = boto3.resource('s3')
+# Print out bucket names
+for bucket in s3.buckets.all():
+    print ('========bucket===========')
+    print (bucket.name)
+    print ('++++++++bucket+++++++++++')
+conn = boto.connect_s3()
+print ('================conn================')
+print (conn)
 
 
 @app.route('/audio')
