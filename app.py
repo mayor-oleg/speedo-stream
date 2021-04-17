@@ -18,7 +18,7 @@ for bucket in s3.buckets.all():
     print ('========bucket===========')
     print (bucket.name)
     print ('++++++++bucket+++++++++++')
-conn = boto.connect_s3()
+conn = boto3.connect_s3()
 print ('================conn================')
 print (conn)
 
