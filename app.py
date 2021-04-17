@@ -6,7 +6,7 @@
 #"""
 
 from flask import Flask, Response,render_template
-import boto
+import boto3
 
 app = Flask(__name__)
 #server = app.server
