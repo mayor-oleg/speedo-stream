@@ -7,6 +7,8 @@
 
 from flask import Flask, Response,render_template
 import boto3
+import sounddevice as sd
+
 
 app = Flask(__name__)
 #server = app.server
