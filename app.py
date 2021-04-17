@@ -23,44 +23,31 @@ for bucket in s3.buckets.all():
 #print (conn)
 
 
+def sound():
+    sampleRate = fs = 44100  # Частота дискретизации
+    seconds = 3 # Продолжительность записи
+        
+    bitsPerSample = 16
+    channels = 2
+    
+        
+    myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=2)
+    
+    sd.wait()  # Дождитесь окончания записи
+    #write('output.wav', fs, myrecording)  # Сохранить как WAV файл
+    s3.Bucket('speedo-raw-store').put_object(Key='output.wav', Body=myrecording)
+
+             
 @app.route('/audio')
 def audio():
     # start Recording
-    def sound():
-
-        sampleRate = fs = 44100  # Частота дискретизации
-        seconds = 3  # Продолжительность записи
-
-        bitsPerSample = 16
-        channels = 2
-        wav_header = genHeader(sampleRate, bitsPerSample, channels)
-
-        stream = myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=2)
-        sd.wait()  # Дождитесь окончания записи
-        #write('output.wav', fs, myrecording)  # Сохранить как WAV файл
-        print("recording...")
-        #frames = []
-        first_run = True
-        while True:
-           if first_run:
-               data = wav_header + stream
-               first_run = False
-           else:
-               data = stream
-           yield(data)
-
-    return Response(sound())
-
-
-
-
+    sound()
+    return 'recorded'
 
 @app.route('/')
 def index():
     """Video streaming home page."""
     return render_template('index.html')
 
-
 if __name__ == "__main__":
     app.run()
-
